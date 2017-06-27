@@ -43,16 +43,16 @@ export default function (state, action) {
     }
 }
 
-function reveal(state, ii, jj) {
-    if (state.board[ii][jj].revealed) {
+function reveal(state, i, j) {
+    if (state.board[i][j].revealed) {
         return state;
     }
 
-    if (state.board[ii][jj].mine) {
+    if (state.board[i][j].mine) {
         return {
             ...state,
             gameOver: true,
-            board: state.board.map((row, i) => i === ii ? row.map((cell, j) => j === jj ? {
+            board: state.board.map((row, ii) => ii === i ? row.map((cell, ii) => ii === j ? {
                 ...cell,
                 exploded: true,
                 revealed: true,
@@ -60,12 +60,12 @@ function reveal(state, ii, jj) {
         };
     }
 
-    const adjacentMines = countAdjacentMines(state, ii, jj);
+    const adjacentMines = countAdjacentMines(state, i, j);
 
     state = {
         ...state,
         revealedCells: state.revealedCells + 1,
-        board: state.board.map((row, i) => i === ii ? row.map((cell, j) => j === jj ? {
+        board: state.board.map((row, i) => i === i ? row.map((cell, j) => j === j ? {
             ...cell,
             revealed: true,
             adjacentMines,
@@ -73,7 +73,7 @@ function reveal(state, ii, jj) {
     };
 
     if (adjacentMines === 0) {
-        state = revealAdjacentCells(state, ii, jj);
+        state = revealAdjacentCells(state, i, j);
     }
 
     return state;
