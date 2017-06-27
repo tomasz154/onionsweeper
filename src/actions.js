@@ -7,3 +7,7 @@ export function toggleMark(i, j) {
 export function revealCell(i, j) {
     return {type: ACTION_TYPES.REVEAL_CELL, i, j};
 }
+
+export function reset(board, mines) {
+    return {type: ACTION_TYPES.RESET, board, mines};
+}

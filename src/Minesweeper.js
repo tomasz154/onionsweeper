@@ -20,9 +20,14 @@ class Minesweeper extends Component {
         this.props.onToggleCellMark(i, j);
     }
 
+    reset() {
+        this.props.onReset();
+    }
+
     render() {
         return <div>
             {this.props.minesLeft}
+            <button onClick={this.reset.bind(this)}>reset</button>
             <table>
                 <tbody>
                 {this.props.board.map((row, i) => <tr key={i}>

@@ -2,6 +2,14 @@ import * as ACTION_TYPES from './actionTypes';
 
 export default function (state, action) {
     switch (action.type) {
+        case ACTION_TYPES.RESET:
+            return {
+                board: action.board,
+                gameOver: false,
+                totalMines: action.mines,
+                markedMines: 0,
+            };
+
         case ACTION_TYPES.TOGGLE_MARK:
             if (state.gameOver || state.board[action.i][action.j].revealed) {
                 return state;
