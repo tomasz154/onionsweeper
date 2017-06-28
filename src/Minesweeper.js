@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 
-function Cell({cell, onReveal, onMark}) {
+function Mine() {
+    return <img src="/onion.png" className="mine"/>;
+}
+
+function Cell({cell, onReveal, onMark, gameOver}) {
     return <td
-        className={cell.exploded ? 'exploded' : cell.marked ? 'marked' : cell.revealed ? (cell.adjacentMines ? 'revealed mines_' + cell.adjacentMines : 'revealed') : ''}
+        className={cell.exploded ? 'exploded' : cell.marked ? (gameOver && !cell.mine ? 'false_positive' : 'marked') : cell.revealed ? (cell.adjacentMines ? 'revealed mines_' + cell.adjacentMines : 'revealed') : ''}
         onClick={onReveal}
         onContextMenu={onMark}>
-        {cell.exploded ? '💥' : cell.marked ? '🚩' : cell.revealed ? (cell.adjacentMines ? cell.adjacentMines : '') : ''}
+        {cell.exploded ? <Mine/>
+            : cell.marked ? (gameOver && !cell.mine ? <Mine/> : '🚩')
+                : cell.revealed ? (cell.adjacentMines ? cell.adjacentMines : '')
+                    : ''
+        }
     </td>;
 }
 
@@ -33,6 +41,7 @@ class Minesweeper extends Component {
                 {this.props.board.map((row, i) => <tr key={i}>
                     {row.map((cell, j) => <Cell
                         key={j} cell={cell}
+                        gameOver={this.props.gameOver}
                         onReveal={(e) => this.revealCell(e, i, j)}
                         onMark={(e) => this.toggleCellMark(e, i, j)}
                     />)}

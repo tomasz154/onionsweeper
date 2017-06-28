@@ -13,8 +13,16 @@ td {
     text-align: center;
 }
 
-.revealed {
+.revealed, .exploded {
     background: #e9e9e9;
+}
+
+.mine {
+    width: 20px;
+}
+
+.false_positive {
+    background: orangered;
 }
 
 .mines_1 {
@@ -27,4 +35,24 @@ td {
 
 .mines_3 {
     color: red;
+}
+
+.mines_4 {
+    color: darkblue;
+}
+
+.mines_5 {
+    color: darkred;
+}
+
+.mines_6 {
+    color: darkturquoise;
+}
+
+.mines_7 {
+
+}
+
+.mines_8 {
+
 }
