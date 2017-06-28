@@ -52,7 +52,7 @@ function reveal(state, i, j) {
         return {
             ...state,
             gameOver: true,
-            board: state.board.map((row, ii) => ii === i ? row.map((cell, ii) => ii === j ? {
+            board: state.board.map((row, ii) => ii === i ? row.map((cell, jj) => jj === j ? {
                 ...cell,
                 exploded: true,
                 revealed: true,
@@ -65,7 +65,7 @@ function reveal(state, i, j) {
     state = {
         ...state,
         revealedCells: state.revealedCells + 1,
-        board: state.board.map((row, i) => i === i ? row.map((cell, j) => j === j ? {
+        board: state.board.map((row, ii) => i === ii ? row.map((cell, jj) => j === jj ? {
             ...cell,
             revealed: true,
             adjacentMines,
