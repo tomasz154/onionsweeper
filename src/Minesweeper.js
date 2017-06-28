@@ -45,6 +45,7 @@ class Minesweeper extends Component {
 
                 <div className="number"></div>
             </div>
+
             <table>
                 <tbody>
                 {this.props.board.map((row, i) => <tr key={i}>
@@ -57,6 +58,10 @@ class Minesweeper extends Component {
                 </tr>)}
                 </tbody>
             </table>
+
+            <div className="bottom">
+                {this.props.gameOver && this.props.won ? 'Gratulacje!' : ''}
+            </div>
         </div>;
     }
 }

@@ -6,6 +6,7 @@ export default function (state, action) {
             return {
                 board: action.board,
                 gameOver: false,
+                won: false,
                 totalMines: action.mines,
                 markedMines: 0,
             };
@@ -33,6 +34,7 @@ export default function (state, action) {
 
             if (state.board.reduce((prev, current) => prev + current.reduce((prev, current) => prev + ((current.revealed || current.marked) ? 0 : 1), 0), 0) === 0) {
                 state.gameOver = true;
+                state.won = true;
             }
 
             return state;
