@@ -33,9 +33,18 @@ class Minesweeper extends Component {
     }
 
     render() {
-        return <div>
-            {this.props.minesLeft}
-            <button onClick={this.reset.bind(this)}>reset</button>
+        return <div className="game">
+            <div className="top">
+                <div className="number">
+                    {this.props.minesLeft}
+                </div>
+
+                <div>
+                    <button onClick={this.reset.bind(this)}>RESET</button>
+                </div>
+
+                <div className="number"></div>
+            </div>
             <table>
                 <tbody>
                 {this.props.board.map((row, i) => <tr key={i}>
