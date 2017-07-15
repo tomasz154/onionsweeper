@@ -31,3 +31,5 @@ jobs:
 
       - store_artifacts:
           path: build
+
+      - run: ./deploy.sh
