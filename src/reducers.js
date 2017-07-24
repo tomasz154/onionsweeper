@@ -18,14 +18,10 @@ export default function (state, action) {
                 return state;
             }
 
-            return {
-                ...state,
-                board: state.board.map((row, i) => i === action.i ? row.map((cell, j) => j === action.j ? {
-                    ...cell,
-                    marked: !cell.marked,
-                } : cell) : row),
-                markedMines: state.markedMines + (state.board[action.i][action.j].marked ? -1 : 1),
-            };
+            state = toggleMark(state, action.i, action.j);
+            state = check(state);
+
+            return state;
 
         case ACTION_TYPES.REVEAL_CELL:
             if (state.gameOver || state.board[action.i][action.j].marked) {
@@ -33,11 +29,7 @@ export default function (state, action) {
             }
 
             state = reveal(state, action.i, action.j);
-
-            if (state.board.reduce((prev, current) => prev + current.reduce((prev, current) => prev + ((current.revealed || current.marked) ? 0 : 1), 0), 0) === 0) {
-                state.gameOver = true;
-                state.won = true;
-            }
+            state = check(state);
 
             return state;
 
@@ -122,5 +114,25 @@ function revealAdjacentCells(state, i, j) {
         }
     }
 
+    return state;
+}
+
+function toggleMark(state, i, j) {
+    state = {
+        ...state,
+        board: state.board.map((row, ii) => ii === i ? row.map((cell, jj) => jj === j ? {
+            ...cell,
+            marked: !cell.marked,
+        } : cell) : row),
+        markedMines: state.markedMines + (state.board[i][j].marked ? -1 : 1),
+    };
+    return state;
+}
+
+function check(state) {
+    if (state.board.reduce((prev, current) => prev + current.reduce((prev, current) => prev + ((current.revealed || current.marked) ? 0 : 1), 0), 0) === 0) {
+        state.gameOver = true;
+        state.won = true;
+    }
     return state;
 }
