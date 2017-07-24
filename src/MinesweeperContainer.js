@@ -26,6 +26,7 @@ class MinesweeperContainer extends Component {
             gameOver={this.props.gameOver}
             won={this.props.won}
             minesLeft={this.props.totalMines - this.props.markedMines}
+            elapsedTime={this.props.elapsedTime}
             onRevealCell={this.handleRevealCell.bind(this)}
             onToggleCellMark={this.handleToggleCellMark.bind(this)}
             onReset={this.handleReset.bind(this)}
@@ -40,6 +41,7 @@ function mapStateToProps(state) {
         markedMines: state.markedMines,
         gameOver: state.gameOver,
         won: state.won,
+        elapsedTime: state.elapsedTime,
     };
 }
 

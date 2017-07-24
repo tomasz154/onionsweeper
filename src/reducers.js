@@ -9,6 +9,8 @@ export default function (state, action) {
                 won: false,
                 totalMines: action.mines,
                 markedMines: 0,
+                started: false,
+                elapsedTime: 0,
             };
 
         case ACTION_TYPES.TOGGLE_MARK:
@@ -38,6 +40,22 @@ export default function (state, action) {
             }
 
             return state;
+
+        case ACTION_TYPES.START:
+            return {
+                ...state,
+                started: true,
+            };
+
+        case ACTION_TYPES.INCREMENT_TIME:
+            if (state.started && !state.gameOver) {
+                return {
+                    ...state,
+                    elapsedTime: state.elapsedTime + 1,
+                };
+            } else {
+                return state;
+            }
 
         default:
             return state;

@@ -43,7 +43,7 @@ class Minesweeper extends Component {
                     <button onClick={this.reset.bind(this)}>RESET</button>
                 </div>
 
-                <div className="number"></div>
+                <div className="number">{this.props.elapsedTime}</div>
             </div>
 
             <table>
