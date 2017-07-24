@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 function Mine() {
-    return <img src="/onion.png" className="mine"/>;
+    return <img src="/onion.png" alt="" className="mine"/>;
 }
 
 function Cell({cell, onReveal, onMark, gameOver}) {
