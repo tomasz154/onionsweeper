@@ -16,8 +16,8 @@ import {reset} from './actions';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-const mines = 10;
-const board = makeBoard(10, mines);
+const mines = 40;
+const board = makeBoard(16, mines);
 store.dispatch(reset(board, mines));
 
 ReactDOM.render(
