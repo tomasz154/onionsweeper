@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Cebulper",
+  "name": "Cebulper",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "onion.png",
       "sizes": "192x192",
       "type": "image/png"
     }

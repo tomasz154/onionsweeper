@@ -3,9 +3,11 @@ body {
     justify-content: center;
 }
 
-.game {
+.game, .settings {
     border: 1px solid lightgray;
     padding: 20px;
+    margin: 0 10px;
+    float: left;
 }
 
 .top {

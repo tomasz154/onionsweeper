@@ -4,12 +4,12 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-export default function makeBoard(size, mines) {
+export default function makeBoard(width, height, mines) {
     const arr = [];
 
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < height; i++) {
         arr[i] = [];
-        for (let j = 0; j < size; j++) {
+        for (let j = 0; j < width; j++) {
             arr[i][j] = {
                 mine: false,
                 revealed: false,
@@ -20,7 +20,7 @@ export default function makeBoard(size, mines) {
     }
 
     for (let i = 0; i < mines;) {
-        const cell = arr[getRandomInt(0, size - 1)][getRandomInt(0, size)];
+        const cell = arr[getRandomInt(0, height)][getRandomInt(0, width)];
         if (cell.mine) {
             continue;
         }
