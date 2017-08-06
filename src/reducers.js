@@ -2,8 +2,20 @@ import * as ACTION_TYPES from './actionTypes';
 
 export default function (state, action) {
     switch (action.type) {
+        case ACTION_TYPES.SET_SETTINGS:
+            return {
+                ...state,
+                settings: {
+                    width: action.width,
+                    height: action.height,
+                    mines: action.mines,
+                },
+            };
+
         case ACTION_TYPES.RESET:
             return {
+                ...state,
+
                 board: action.board,
                 gameOver: false,
                 won: false,

@@ -1,4 +1,5 @@
 import * as ACTION_TYPES from './actionTypes';
+import makeBoard from './makeBoard'
 
 export function toggleMark(i, j) {
     return (dispatch, getState) => {
@@ -20,8 +21,20 @@ export function revealCell(i, j) {
     };
 }
 
+export function newGame() {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        const board = makeBoard(settings.width, settings.height, settings.mines);
+        dispatch(reset(board, settings.mines));
+    };
+}
+
 export function reset(board, mines) {
     return {type: ACTION_TYPES.RESET, board, mines};
+}
+
+export function setSettings(width, height, mines) {
+    return {type: ACTION_TYPES.SET_SETTINGS, width, height, mines};
 }
 
 function start() {
