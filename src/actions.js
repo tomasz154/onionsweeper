@@ -1,5 +1,5 @@
 import * as ACTION_TYPES from './actionTypes';
-import makeBoard from './makeBoard'
+import {initializeBoard, makeBoard} from './makeBoard'
 import settingsStorage from './settingsStorage'
 
 export function toggleMark(i, j) {
@@ -14,7 +14,10 @@ export function toggleMark(i, j) {
 
 export function revealCell(i, j) {
     return (dispatch, getState) => {
-        const {started} = getState();
+        const {initialized, started} = getState();
+        if (!initialized) {
+            dispatch(initialize(i, j));
+        }
         if (!started) {
             dispatch(start());
         }
@@ -61,6 +64,20 @@ function start() {
 
         dispatch({type: ACTION_TYPES.START});
     };
+}
+
+function initialize(i, j) {
+    return (dispatch, getState) => {
+        const level = getState().settings.currentLevel;
+        const levels = getState().levels;
+        const {width, height, mines} = levels[level];
+
+        dispatch(placeMines(initializeBoard(width, height, mines)));
+    };
+}
+
+function placeMines(mines) {
+    return {type: ACTION_TYPES.PLACE_MINES, mines};
 }
 
 function incrementTime() {

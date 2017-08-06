@@ -38,6 +38,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
 
+                initialized: false,
                 board: action.board,
                 gameOver: false,
                 won: false,
@@ -45,6 +46,13 @@ export default function (state = initialState, action) {
                 markedMines: 0,
                 started: false,
                 elapsedTime: 0,
+            };
+
+        case ACTION_TYPES.PLACE_MINES:
+            return {
+                ...state,
+                initialized: true,
+                board: placeMines(state.board, action.mines),
             };
 
         case ACTION_TYPES.TOGGLE_MARK:
@@ -169,4 +177,13 @@ function check(state) {
         state.won = true;
     }
     return state;
+}
+
+function placeMines(board, mines) {
+    return board.map((row, ii) => row.map((cell, jj) => {
+        return {
+            ...cell,
+            mine: !!mines.find(mine => mine.x === ii && mine.y === jj),
+        }
+    }))
 }
