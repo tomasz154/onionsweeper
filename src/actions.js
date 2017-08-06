@@ -1,5 +1,6 @@
 import * as ACTION_TYPES from './actionTypes';
 import makeBoard from './makeBoard'
+import settingsStorage from './settingsStorage'
 
 export function toggleMark(i, j) {
     return (dispatch, getState) => {
@@ -37,6 +38,13 @@ function reset(board, mines) {
 }
 
 export function setLevel(level) {
+    return (dispatch, getState) => {
+        settingsStorage.setLevel(level);
+        dispatch(doSetLevel(level));
+    }
+}
+
+function doSetLevel(level) {
     return {type: ACTION_TYPES.SET_LEVEL, level};
 }
 
