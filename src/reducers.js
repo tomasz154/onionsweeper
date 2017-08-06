@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 settings: {
-                    currentLevel: 0,
+                    currentLevel: action.level,
                 },
             };
 

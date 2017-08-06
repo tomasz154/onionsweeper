@@ -69,7 +69,7 @@ class Minesweeper extends Component {
             </div>
             <Settings
                 levels={this.props.levels}
-                currentLevel={this.props.currentLevel}
+                currentLevel={this.props.settings.currentLevel}
                 onLevelChange={level => this.changeLevel(level)}
             />
         </div>;

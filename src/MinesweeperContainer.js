@@ -18,7 +18,8 @@ class MinesweeperContainer extends Component {
     }
 
     handleLevelChange(level) {
-        // this.props.actions.changeLevel(level);
+        this.props.actions.setSettings(Number(level));
+        this.props.actions.newGame();
     }
 
     render() {
@@ -32,7 +33,7 @@ class MinesweeperContainer extends Component {
             onToggleCellMark={this.handleToggleCellMark.bind(this)}
             onReset={this.handleReset.bind(this)}
             levels={this.props.levels}
-            currentLevel={this.props.settings.currentLevel}
+            settings={this.props.settings}
             onLevelChange={this.handleLevelChange.bind(this)}
         />;
     }

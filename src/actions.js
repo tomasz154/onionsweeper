@@ -36,8 +36,8 @@ function reset(board, mines) {
     return {type: ACTION_TYPES.RESET, board, mines};
 }
 
-export function setSettings(width, height, mines) {
-    return {type: ACTION_TYPES.SET_SETTINGS, width, height, mines};
+export function setSettings(level) {
+    return {type: ACTION_TYPES.SET_SETTINGS, level};
 }
 
 function start() {
