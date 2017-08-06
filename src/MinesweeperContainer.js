@@ -15,8 +15,8 @@ class MinesweeperContainer extends Component {
     }
 
     handleReset() {
-        const mines = 90;
-        const board = makeBoard(20, mines);
+        const mines = 10;
+        const board = makeBoard(10, 10, mines);
         this.props.actions.reset(board, mines);
     }
 
