@@ -183,7 +183,7 @@ function placeMines(board, mines) {
     return board.map((row, ii) => row.map((cell, jj) => {
         return {
             ...cell,
-            mine: !!mines.find(mine => mine.x === ii && mine.y === jj),
+            mine: !!mines.find(mine => mine.i === ii && mine.j === jj),
         }
     }))
 }

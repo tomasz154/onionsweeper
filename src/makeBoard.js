@@ -4,7 +4,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-export function makeBoard(width, height, mines) {
+export function makeBoard(width, height) {
     const arr = [];
 
     for (let i = 0; i < height; i++) {
@@ -22,23 +22,23 @@ export function makeBoard(width, height, mines) {
     return arr;
 }
 
-export function initializeBoard(width, height, mines, x1, y1) {
+export function initializeBoard(width, height, mines, i1, j1) {
     const board = [];
 
-    for (let i = 0; i < mines;) {
-        let x = getRandomInt(0, height);
-        let y = getRandomInt(0, width);
-        if (isSameOrAdjacent(x, y, x1, y1) || board.find(cell => cell.x === x && cell.y === y)) {
+    for (let k = 0; k < mines;) {
+        let i = getRandomInt(0, height);
+        let j = getRandomInt(0, width);
+        if (isSameOrAdjacent(i, j, i1, j1) || board.find(cell => cell.i === i && cell.j === j)) {
             continue;
         }
-        board.push({x, y});
+        board.push({i, j});
 
-        i++;
+        k++;
     }
 
     return board;
 }
 
-function isSameOrAdjacent(x1, y1, x2, y2) {
-    return Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1;
+function isSameOrAdjacent(i1, j1, i2, j2) {
+    return Math.abs(i1 - i2) <= 1 && Math.abs(j1 - j2) <= 1;
 }

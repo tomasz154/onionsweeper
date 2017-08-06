@@ -31,7 +31,7 @@ export function newGame() {
         const levels = getState().levels;
         const settings = levels[level];
 
-        const board = makeBoard(settings.width, settings.height, settings.mines);
+        const board = makeBoard(settings.width, settings.height);
         dispatch(reset(board, settings.mines));
     };
 }
