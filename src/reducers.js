@@ -20,6 +20,11 @@ const initialState = {
             mines: 99,
             name: 'Trudny'
         },
+    ],
+    rank: [
+        [],
+        [],
+        []
     ]
 };
 
@@ -82,6 +87,13 @@ export default function (state = initialState, action) {
             } else {
                 return state;
             }
+
+        case ACTION_TYPES.SET_RANK:
+            return {
+                ...state,
+                rank: action.rank,
+            };
+            break;
 
         default:
             return state;

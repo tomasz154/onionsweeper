@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Leaderboard from './Leaderboard'
 import Settings from './Settings'
 
 function Mine() {
@@ -74,6 +75,7 @@ class Minesweeper extends Component {
                 currentLevel={this.props.settings.currentLevel}
                 onLevelChange={level => this.changeLevel(level)}
             />
+            <Leaderboard levels={this.props.levels} rank={this.props.rank}/>
         </div>;
     }
 }

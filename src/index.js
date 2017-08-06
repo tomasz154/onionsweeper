@@ -10,13 +10,14 @@ import './index.css';
 import reducer from './reducers'
 
 import MinesweeperContainer from './MinesweeperContainer';
-import {newGame, setLevel} from './actions';
+import {loadRank, newGame, setLevel} from './actions';
 import settingsStorage from './settingsStorage'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 store.dispatch(setLevel(settingsStorage.getLevel()));
+store.dispatch(loadRank());
 store.dispatch(newGame());
 
 ReactDOM.render(

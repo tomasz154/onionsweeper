@@ -4,3 +4,4 @@ export const RESET = 'RESET';
 export const START = 'START';
 export const INCREMENT_TIME = 'INCREMENT_TIME';
 export const SET_LEVEL = 'SET_LEVEL';
+export const SET_RANK = 'SET_RANK';

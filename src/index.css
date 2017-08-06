@@ -3,7 +3,7 @@ body {
     justify-content: center;
 }
 
-.game, .settings {
+.game, .settings, .leaderboard {
     border: 1px solid lightgray;
     padding: 20px;
     margin: 0 10px;
@@ -84,4 +84,16 @@ td {
 
 .mines_8 {
 
+}
+
+.leaderboard header {
+    font-weight: bold;
+}
+
+.leaderboard section {
+    margin-bottom: 1em;
+}
+
+.leaderboard section:last-child {
+    margin-bottom: 0;
 }

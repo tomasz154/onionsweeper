@@ -1,6 +1,7 @@
 import * as ACTION_TYPES from './actionTypes';
 import makeBoard from './makeBoard'
 import settingsStorage from './settingsStorage'
+import rankStorage from './RankStorage';
 
 export function toggleMark(i, j) {
     return (dispatch, getState) => {
@@ -65,4 +66,14 @@ function start() {
 
 function incrementTime() {
     return {type: ACTION_TYPES.INCREMENT_TIME};
+}
+
+export function setRank(rank) {
+    return {type: ACTION_TYPES.SET_RANK, rank};
+}
+
+export function loadRank() {
+    return (dispatch, getState) => {
+        rankStorage.getRank().then(rank => dispatch(setRank(rank)));
+    };
 }
