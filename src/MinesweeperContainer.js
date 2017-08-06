@@ -18,7 +18,7 @@ class MinesweeperContainer extends Component {
     }
 
     handleLevelChange(level) {
-        this.props.actions.setSettings(Number(level));
+        this.props.actions.setLevel(Number(level));
         this.props.actions.newGame();
     }
 

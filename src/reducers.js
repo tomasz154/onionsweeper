@@ -19,10 +19,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case ACTION_TYPES.SET_SETTINGS:
+        case ACTION_TYPES.SET_LEVEL:
             return {
                 ...state,
                 settings: {
+                    ...state.setttings,
                     currentLevel: action.level,
                 },
             };
