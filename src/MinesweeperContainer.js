@@ -32,7 +32,7 @@ class MinesweeperContainer extends Component {
             onToggleCellMark={this.handleToggleCellMark.bind(this)}
             onReset={this.handleReset.bind(this)}
             levels={this.props.levels}
-            currentLevel={this.props.currentLevel}
+            currentLevel={this.props.settings.currentLevel}
             onLevelChange={this.handleLevelChange.bind(this)}
         />;
     }
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
         won: state.won,
         elapsedTime: state.elapsedTime,
         levels: state.levels,
-        currentLevel: state.currentLevel,
+        settings: state.settings,
     };
 }
 
