@@ -3,16 +3,22 @@ import * as ACTION_TYPES from './actionTypes';
 const initialState = {
     levels: [
         {
-            width: 10,
-            height: 10,
+            width: 9,
+            height: 9,
             mines: 10,
-            name: 'Easy'
+            name: 'Łatwy'
         },
         {
             width: 16,
             height: 16,
             mines: 40,
-            name: 'Medium'
+            name: 'Średni'
+        },
+        {
+            width: 30,
+            height: 16,
+            mines: 99,
+            name: 'Trudny'
         },
     ]
 };
