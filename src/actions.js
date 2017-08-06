@@ -72,7 +72,7 @@ function initialize(i, j) {
         const levels = getState().levels;
         const {width, height, mines} = levels[level];
 
-        dispatch(placeMines(initializeBoard(width, height, mines)));
+        dispatch(placeMines(initializeBoard(width, height, mines, i, j)));
     };
 }
 
