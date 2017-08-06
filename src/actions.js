@@ -29,7 +29,7 @@ export function newGame() {
     };
 }
 
-export function reset(board, mines) {
+function reset(board, mines) {
     return {type: ACTION_TYPES.RESET, board, mines};
 }
 

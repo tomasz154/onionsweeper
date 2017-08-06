@@ -3,7 +3,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Minesweeper from './Minesweeper';
 import * as Actions from './actions';
-import makeBoard from './makeBoard';
 
 class MinesweeperContainer extends Component {
     handleRevealCell(i, j) {
