@@ -34,8 +34,10 @@ jobs:
 
     steps:
       - checkout
-      - deploy: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
-      - deploy: ./deploy.sh
+      - deploy:
+          command: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
+      - deploy:
+          command: ./deploy.sh
 
 workflows:
   version: 2
