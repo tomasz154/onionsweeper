@@ -10,6 +10,8 @@ jobs:
     steps:
       - checkout
 
+      - run: echo $CIRCLE_SHA1 > .circle-sha
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -24,6 +26,11 @@ jobs:
 
       - run: yarn build
 
+      - save_cache:
+          paths:
+            - build
+          key: v1-build-{{ checksum ".circle-sha" }}
+
       - store_artifacts:
           path: build
   deploy:
@@ -34,6 +41,10 @@ jobs:
 
     steps:
       - checkout
+      - run: echo $CIRCLE_SHA1 > .circle-sha
+      - restore_cache:
+          keys:
+            - v1-build-{{ checksum ".circle-sha" }}
       - run: ls -al
       - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
       - run: ./deploy.sh
