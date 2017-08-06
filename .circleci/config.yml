@@ -34,6 +34,7 @@ jobs:
 
     steps:
       - checkout
+      - run: ls -al
       - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
       - run: ./deploy.sh
 
