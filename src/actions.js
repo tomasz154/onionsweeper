@@ -1,4 +1,6 @@
 import * as ACTION_TYPES from './actionTypes';
+import makeBoard from './makeBoard'
+import settingsStorage from './settingsStorage'
 
 export function toggleMark(i, j) {
     return (dispatch, getState) => {
@@ -20,8 +22,30 @@ export function revealCell(i, j) {
     };
 }
 
-export function reset(board, mines) {
+export function newGame() {
+    return (dispatch, getState) => {
+        const level = getState().settings.currentLevel;
+        const levels = getState().levels;
+        const settings = levels[level];
+
+        const board = makeBoard(settings.width, settings.height, settings.mines);
+        dispatch(reset(board, settings.mines));
+    };
+}
+
+function reset(board, mines) {
     return {type: ACTION_TYPES.RESET, board, mines};
+}
+
+export function setLevel(level) {
+    return (dispatch, getState) => {
+        settingsStorage.setLevel(level);
+        dispatch(doSetLevel(level));
+    }
+}
+
+function doSetLevel(level) {
+    return {type: ACTION_TYPES.SET_LEVEL, level};
 }
 
 function start() {

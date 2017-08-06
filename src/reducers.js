@@ -1,9 +1,43 @@
 import * as ACTION_TYPES from './actionTypes';
 
-export default function (state, action) {
+const initialState = {
+    levels: [
+        {
+            width: 9,
+            height: 9,
+            mines: 10,
+            name: 'Łatwy'
+        },
+        {
+            width: 16,
+            height: 16,
+            mines: 40,
+            name: 'Średni'
+        },
+        {
+            width: 30,
+            height: 16,
+            mines: 99,
+            name: 'Trudny'
+        },
+    ]
+};
+
+export default function (state = initialState, action) {
     switch (action.type) {
+        case ACTION_TYPES.SET_LEVEL:
+            return {
+                ...state,
+                settings: {
+                    ...state.setttings,
+                    currentLevel: action.level,
+                },
+            };
+
         case ACTION_TYPES.RESET:
             return {
+                ...state,
+
                 board: action.board,
                 gameOver: false,
                 won: false,

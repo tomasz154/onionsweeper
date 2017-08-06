@@ -3,7 +3,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Minesweeper from './Minesweeper';
 import * as Actions from './actions';
-import makeBoard from './makeBoard';
 
 class MinesweeperContainer extends Component {
     handleRevealCell(i, j) {
@@ -15,9 +14,12 @@ class MinesweeperContainer extends Component {
     }
 
     handleReset() {
-        const mines = 10;
-        const board = makeBoard(10, 10, mines);
-        this.props.actions.reset(board, mines);
+        this.props.actions.newGame();
+    }
+
+    handleLevelChange(level) {
+        this.props.actions.setLevel(Number(level));
+        this.props.actions.newGame();
     }
 
     render() {
@@ -30,6 +32,9 @@ class MinesweeperContainer extends Component {
             onRevealCell={this.handleRevealCell.bind(this)}
             onToggleCellMark={this.handleToggleCellMark.bind(this)}
             onReset={this.handleReset.bind(this)}
+            levels={this.props.levels}
+            settings={this.props.settings}
+            onLevelChange={this.handleLevelChange.bind(this)}
         />;
     }
 }
@@ -42,6 +47,8 @@ function mapStateToProps(state) {
         gameOver: state.gameOver,
         won: state.won,
         elapsedTime: state.elapsedTime,
+        levels: state.levels,
+        settings: state.settings,
     };
 }
 
