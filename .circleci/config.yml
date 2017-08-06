@@ -28,5 +28,9 @@ jobs:
       - store_artifacts:
         path: build
 
-      - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
-      - run: ./deploy.sh
+      - deploy:
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
+            ./deploy.sh
+          fi
