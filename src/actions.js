@@ -23,7 +23,10 @@ export function revealCell(i, j) {
 
 export function newGame() {
     return (dispatch, getState) => {
-        const settings = getState().settings;
+        const level = getState().settings.currentLevel;
+        const levels = getState().levels;
+        const settings = levels[level];
+
         const board = makeBoard(settings.width, settings.height, settings.mines);
         dispatch(reset(board, settings.mines));
     };

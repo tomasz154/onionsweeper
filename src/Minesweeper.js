@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Settings from './Settings'
 
 function Mine() {
     return <img src="/onion.png" alt="" className="mine"/>;
@@ -32,6 +33,10 @@ class Minesweeper extends Component {
         this.props.onReset();
     }
 
+    changeLevel(level) {
+        this.props.onLevelChange(level);
+    }
+
     render() {
         return <div className="game">
             <div className="top">
@@ -62,6 +67,11 @@ class Minesweeper extends Component {
             <div className="bottom">
                 {this.props.gameOver && this.props.won ? 'Gratulacje!' : ''}
             </div>
+            <Settings
+                levels={this.props.levels}
+                currentLevel={this.props.currentLevel}
+                onLevelChange={level => this.changeLevel(level)}
+            />
         </div>;
     }
 }

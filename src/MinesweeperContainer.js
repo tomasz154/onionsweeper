@@ -17,6 +17,10 @@ class MinesweeperContainer extends Component {
         this.props.actions.newGame();
     }
 
+    handleLevelChange(level) {
+        // this.props.actions.changeLevel(level);
+    }
+
     render() {
         return <Minesweeper
             board={this.props.board}
@@ -27,6 +31,9 @@ class MinesweeperContainer extends Component {
             onRevealCell={this.handleRevealCell.bind(this)}
             onToggleCellMark={this.handleToggleCellMark.bind(this)}
             onReset={this.handleReset.bind(this)}
+            levels={this.props.levels}
+            currentLevel={this.props.currentLevel}
+            onLevelChange={this.handleLevelChange.bind(this)}
         />;
     }
 }
@@ -39,6 +46,8 @@ function mapStateToProps(state) {
         gameOver: state.gameOver,
         won: state.won,
         elapsedTime: state.elapsedTime,
+        levels: state.levels,
+        currentLevel: state.currentLevel,
     };
 }
 

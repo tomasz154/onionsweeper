@@ -1,14 +1,29 @@
 import * as ACTION_TYPES from './actionTypes';
 
-export default function (state, action) {
+const initialState = {
+    levels: [
+        {
+            width: 10,
+            height: 10,
+            mines: 10,
+            name: 'Easy'
+        },
+        {
+            width: 16,
+            height: 16,
+            mines: 40,
+            name: 'Medium'
+        },
+    ]
+};
+
+export default function (state = initialState, action) {
     switch (action.type) {
         case ACTION_TYPES.SET_SETTINGS:
             return {
                 ...state,
                 settings: {
-                    width: action.width,
-                    height: action.height,
-                    mines: action.mines,
+                    currentLevel: 0,
                 },
             };
 
