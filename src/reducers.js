@@ -93,7 +93,6 @@ export default function (state = initialState, action) {
                 ...state,
                 rank: action.rank,
             };
-            break;
 
         default:
             return state;
