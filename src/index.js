@@ -27,3 +27,7 @@ ReactDOM.render(
 );
 
 registerServiceWorker();
+
+const a = undefined;
+a[1];
+
