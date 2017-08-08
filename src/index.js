@@ -20,7 +20,7 @@ store.dispatch(setLevel(settingsStorage.getLevel()));
 store.dispatch(newGame());
 
 ReactDOM.render(
-    <Provider store={undefined}>
+    <Provider store={store}>
         <MinesweeperContainer/>
     </Provider>,
     document.getElementById('root')
