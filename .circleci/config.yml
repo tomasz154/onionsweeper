@@ -43,7 +43,7 @@ jobs:
           keys:
             - v1-build-{{ .Revision }}
       - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
-      - run: ./deploy.sh
+      - run: VERSION=$CIRCLE_SHA1 ./deploy.sh
 
 workflows:
   version: 2
