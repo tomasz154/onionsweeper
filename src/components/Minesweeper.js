@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Settings from './Settings'
 import Board from "./Board";
 import TopBar from "./TopBar";
+import BottomBar from "./BottomBar";
 
 class Minesweeper extends Component {
     revealCell(e, i, j) {
@@ -37,10 +38,11 @@ class Minesweeper extends Component {
                   onReveal={(e, i, j) => this.revealCell(e, i, j)}
                   onMark={(e, i, j) => this.toggleCellMark(e, i, j)}
                 />
-
-                <div className="bottom">
-                    {this.props.gameOver && this.props.won ? 'Gratulacje!' : ''}
-                </div>
+                
+                <BottomBar
+                  gameOver={this.props.gameOver}
+                  won={this.props.won}
+                />
             </div>
             <Settings
                 levels={this.props.levels}
