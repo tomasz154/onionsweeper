@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import Minesweeper from './Minesweeper';
+import Minesweeper from './components/Minesweeper';
 import * as Actions from './actions';
 
 class MinesweeperContainer extends Component {
