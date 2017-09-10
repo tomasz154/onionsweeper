@@ -1,22 +1,6 @@
 import React, {Component} from 'react';
 import Settings from './Settings'
-
-function Mine() {
-    return <img src="/onion.png" alt="" className="mine"/>;
-}
-
-function Cell({cell, onReveal, onMark, gameOver}) {
-    return <td
-        className={cell.exploded ? 'exploded' : cell.marked ? (gameOver && !cell.mine ? 'false_positive' : 'marked') : cell.revealed ? (cell.adjacentMines ? 'revealed mines_' + cell.adjacentMines : 'revealed') : ''}
-        onClick={onReveal}
-        onContextMenu={onMark}>
-        {cell.exploded ? <Mine/>
-            : cell.marked ? (gameOver && !cell.mine ? <Mine/> : '🚩')
-                : cell.revealed ? (cell.adjacentMines ? cell.adjacentMines : '')
-                    : ''
-        }
-    </td>;
-}
+import Cell from "./Cell";
 
 class Minesweeper extends Component {
     revealCell(e, i, j) {
