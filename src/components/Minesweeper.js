@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Settings from './Settings'
 import Board from "./Board";
+import TopBar from "./TopBar";
 
 class Minesweeper extends Component {
     revealCell(e, i, j) {
@@ -24,17 +25,11 @@ class Minesweeper extends Component {
     render() {
         return <div>
             <div className="game">
-                <div className="top">
-                    <div className="number">
-                        {this.props.minesLeft}
-                    </div>
-
-                    <div>
-                        <button onClick={this.reset.bind(this)}><img src="/onion.png" alt="" className="mine"/></button>
-                    </div>
-
-                    <div className="number">{this.props.elapsedTime}</div>
-                </div>
+                <TopBar
+                  minesLeft={this.props.minesLeft}
+                  elapsedTime={this.props.elapsedTime}
+                  onReset={this.reset.bind(this)}
+                />
 
                 <Board
                   board={this.props.board}
