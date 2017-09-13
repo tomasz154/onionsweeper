@@ -6,7 +6,8 @@ jobs:
       - image: docker:git
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 17.05.0-ce
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
