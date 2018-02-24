@@ -45,9 +45,7 @@ jobs:
       - run: echo ${GOOGLE_AUTH} > ${HOME}/gcp-key.json
       - run: gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
       - run: gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-      - run: echo ${GOOGLE_BUCKET}
-      - run: ls -l
-      - run: gsutil rsync -Rd build gs://${GOOGLE_BUCKET}/
+      - run: gsutil rsync -Rd /home/circleci/repo/build gs://${GOOGLE_BUCKET}/
 
 workflows:
   version: 2
