@@ -33,19 +33,6 @@ jobs:
           path: build
   deploy:
     docker:
-      - image: circleci/node:7.10
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-build-{{ .Revision }}
-      - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
-      - run: VERSION=$CIRCLE_SHA1 ENVIRONMENT=prod ./deploy.sh
-  deploy_gcloud:
-    docker:
       - image: google/cloud-sdk
 
     working_directory: ~/repo
@@ -63,15 +50,6 @@ jobs:
 workflows:
   version: 2
   build_and_deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
-  build_and_deploy_gcloud:
     jobs:
       - build
       - deploy:
