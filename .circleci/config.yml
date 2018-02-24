@@ -33,7 +33,7 @@ jobs:
           path: build
   deploy:
     docker:
-      - image: circleci/node:7.10
+      - image: google/cloud-sdk
 
     working_directory: ~/repo
 
@@ -42,8 +42,10 @@ jobs:
       - restore_cache:
           keys:
             - v1-build-{{ .Revision }}
-      - run: echo $DEPLOY_HOST_FINGERPRINT >> ~/.ssh/known_hosts
-      - run: VERSION=$CIRCLE_SHA1 ENVIRONMENT=prod ./deploy.sh
+      - run: echo ${GOOGLE_AUTH} > ${HOME}/gcp-key.json
+      - run: gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
+      - run: gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run: gsutil -m rsync -Rd /home/circleci/repo/build gs://${GOOGLE_BUCKET}/
 
 workflows:
   version: 2
